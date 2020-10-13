@@ -34,9 +34,9 @@ namespace WindowsGSM.Plugins
 
 
         // - Game server Fixed variables
-        public override string StartPath => @"Citadel\Binaries\Win64\CitadelServer-Win64-Shipping.exe"; // Game server start path
+        public override string StartPath => @"Citadel\Binaries\Win64\CitadelServer.exe"; // Game server start path
         public string FullName = "Citadel Dedicated Server"; // Game server FullName
-        public bool AllowsEmbedConsole = false;  // Does this server support output redirect?
+        public bool AllowsEmbedConsole = true;  // Does this server support output redirect?
         public int PortIncrements = 1; // This tells WindowsGSM how many ports should skip after installation
         public object QueryMethod = null; // Query method should be use on current server type. Accepted value: null or new A2S() or new FIVEM() or new UT3()
 
@@ -87,10 +87,10 @@ namespace WindowsGSM.Plugins
 
             // Prepare start parameter
             //string param = string.IsNullOrWhiteSpace(_serverData.ServerMap) ? string.Empty : $"{_serverData.ServerMap}?listen";
-            string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $" MultiHome={_serverData.ServerIP}";
-            param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?Port={_serverData.ServerPort}";
+            //string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $" MultiHome={_serverData.ServerIP}";
+            string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?Port={_serverData.ServerPort}";
 			param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?QueryPort={_serverData.ServerQueryPort}";
-            param += $"?{_serverData.ServerParam}? -nosteamclient -game -server -log";
+            param += $"?{_serverData.ServerParam} -game -server -log";
 
             // Prepare Process
             var p = new Process
@@ -165,7 +165,6 @@ namespace WindowsGSM.Plugins
                 using (WebClient webClient = new WebClient())
                 {
                     await webClient.DownloadFileTaskAsync($"https://raw.githubusercontent.com/dkdue/WindowsGSM-Configs/main/Citadel/Game.ini", filePath);
-					await webClient.DownloadFileTaskAsync($"https://raw.githubusercontent.com/dkdue/WindowsGSM-Configs/main/Citadel/Engine.ini", filePath);
                 }
             }
             catch (Exception e)
@@ -175,5 +174,6 @@ namespace WindowsGSM.Plugins
 
             return File.Exists(filePath);
         }
+		
     }
 }
