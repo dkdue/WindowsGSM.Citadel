@@ -1,5 +1,5 @@
 # WindowsGSM.TheIsle
-WindowsGSM plugin that provides TheIsle Dedicated server support!
+WindowsGSM plugin that provides Citadel Dedicated server support!
 
 # Requirements
 WindowsGSM >= 1.21.0
