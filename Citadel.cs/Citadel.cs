@@ -38,7 +38,7 @@ namespace WindowsGSM.Plugins
         public string FullName = "Citadel Dedicated Server"; // Game server FullName
         public bool AllowsEmbedConsole = true;  // Does this server support output redirect?
         public int PortIncrements = 1; // This tells WindowsGSM how many ports should skip after installation
-        public object QueryMethod = null; // Query method should be use on current server type. Accepted value: null or new A2S() or new FIVEM() or new UT3()
+        public object QueryMethod = new A2S(); // Query method should be use on current server type. Accepted value: null or new A2S() or new FIVEM() or new UT3()
 
 
         // - Game server default values
@@ -86,9 +86,9 @@ namespace WindowsGSM.Plugins
             string shipExePath = Functions.ServerPath.GetServersServerFiles(_serverData.ServerID, StartPath);
 
             // Prepare start parameter
-            //string param = string.IsNullOrWhiteSpace(_serverData.ServerMap) ? string.Empty : $"{_serverData.ServerMap}?listen";
-            //string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $" MultiHome={_serverData.ServerIP}";
-            string param = string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?Port={_serverData.ServerPort}";
+            string param = string.IsNullOrWhiteSpace(_serverData.ServerMap) ? string.Empty : $"{_serverData.ServerMap}?listen";
+            param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $" MultiHome={_serverData.ServerIP}";
+            param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?Port={_serverData.ServerPort}";
 			param += string.IsNullOrWhiteSpace(_serverData.ServerPort) ? string.Empty : $"?QueryPort={_serverData.ServerQueryPort}";
             param += $"?{_serverData.ServerParam} -game -server -log";
 
