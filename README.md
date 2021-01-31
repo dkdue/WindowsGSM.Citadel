@@ -1,6 +1,9 @@
 # WindowsGSM.Citadel
 WindowsGSM plugin that provides Citadel Dedicated server support!
 
+# The Game
+https://store.steampowered.com/app/487120/Citadel_Forged_with_Fire/
+
 # Requirements
 WindowsGSM >= 1.21.0
 
